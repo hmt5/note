@@ -22,7 +22,6 @@ git安裝步驟：
 	Git config --local --unset user.name
 	Git config --local --unset user.email 
 
-
 与github相连配置（本地与远程仓库之间通过密钥进行免秘钥登录）
 1、在本地配置生成ssh: 在bash窗口中执行ssh-keygen -t rsa -C 1132849636@qq.com(邮箱名)
 （在本地计算机>用户(users)目录下会生成一个.ssh文件夹，里面有id_rsa（私钥）和id_rsa.pub（公钥）两个文件，我们需要id_rsa.pub的内容复制）
@@ -30,8 +29,6 @@ git安裝步驟：
 2、远程：在github上点击SSH keys创建一个new密钥（title:名字，key:id_rsa.pub的内容复制）
 3、测试本地与远程的联通性：ssh -T git@github.com
 (通过时，本地计算机>用户(users)目录下的.ssh文件夹会生成一个叫known_hosts文件
-
-
 
 本地项目创建git
 一、使用git init命令把这个目录变成Git可以管理的仓库，生成一個.git的目录   //本地執行第一次就可以
