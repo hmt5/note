@@ -1,212 +1,206 @@
-git���b���E��
-1��git�������ذ�װ��
-2����װ��ɺ��ڿ�ʼ�˵����ҵ���Git��->��Git Bash�����ĳ�һ�����������д��ڵĶ���
-3�������������������Ƹ�email��git config ��
-    @1.��������������ã��������ã�
+git安裝步驟：
+1、git官网下载安装包
+2、安装完成后，在开始菜单里找到“Git”->“Git Bash”，蹦出一个类似命令行窗口的东西
+3、命令行输入设置名称跟email（git config ）
+    @1.给整个计算机配置（基本不用）
 	git config --global user.name "Your Name"
 	git config --global user.email "email@example.com"
-	���ڼ����>�û�(users)Ŀ¼�»�����һ��.gitconfig�ļ�������иոն�����û������䣩
-    @2.����ǰ�û�һ�������ã��Ƽ���
-	���κ��ļ������Ҽ�����Ŀ����ִ�У�
+	（在计算机>用户(users)目录下会生成一个.gitconfig文件里面就有刚刚定义的用户跟邮箱）
+    @2.给当前用户一次性设置（推荐）
+	在任何文件夹下右键打开项目窗口执行：
 	git config --system user.name "Your Name"
 	git config --system user.email "email@example.com"
-	ִ�к��ڼ����>�û�(users)Ŀ¼�»�����һ��.gitconfig�ļ�������иոն�����û�������
-    @3.����Ŀ����һ�������ã���
-	��.git�Ҽ�����Ŀ����ִ�У�
+	执行后，在计算机>用户(users)目录下会生成一个.gitconfig文件里面就有刚刚定义的用户跟邮箱
+    @3.给项目配置一次性设置（）
+	在.git右键打开项目窗口执行：
 	git config --local user.name "Your Name"
 	git config --local user.email "email@example.com"
-	ִ�к���.git�ļ�����config�ļ����Բ鿴
-4��ɾ�����õ����Ƹ�email
-     @1.ֱ��ɾ�������ļ�ɾ��Ҫ���Ƹ�email��
-     @2.��.git�Ҽ�����Ŀ����ִ�У�
+	执行后，在.git文件下有config文件可以查看
+4、删除配置的名称跟email
+     @1.直接删除（打开文件删除要名称跟email）
+     @2.在.git右键打开项目窗口执行：
 	Git config --local --unset user.name
 	Git config --local --unset user.email 
 
-��github�������ã�������Զ�ֿ̲�֮��ͨ����Կ��������Կ��¼��
-1���ڱ�����������ssh: ��bash������ִ��ssh-keygen -t rsa -C 1132849636@qq.com(������)
-���ڱ��ؼ����>�û�(users)Ŀ¼�»�����һ��.ssh�ļ��У�������id_rsa��˽Կ����id_rsa.pub����Կ�������ļ���������Ҫid_rsa.pub�����ݸ��ƣ�
+与github相连配置（本地与远程仓库之间通过密钥进行免秘钥登录）
+1、在本地配置生成ssh: 在bash窗口中执行ssh-keygen -t rsa -C 1132849636@qq.com(邮箱名)
+（在本地计算机>用户(users)目录下会生成一个.ssh文件夹，里面有id_rsa（私钥）和id_rsa.pub（公钥）两个文件，我们需要id_rsa.pub的内容复制）
 
-2��Զ�̣���github�ϵ��SSH keys����һ��new��Կ��title:���֣�key:id_rsa.pub�����ݸ��ƣ�
-3�����Ա�����Զ�̵���ͨ�ԣ�ssh -T git@github.com
-(ͨ��ʱ�����ؼ����>�û�(users)Ŀ¼�µ�.ssh�ļ��л�����һ����known_hosts�ļ�
+2、远程：在github上点击SSH keys创建一个new密钥（title:名字，key:id_rsa.pub的内容复制）
+3、测试本地与远程的联通性：ssh -T git@github.com
+(通过时，本地计算机>用户(users)目录下的.ssh文件夹会生成一个叫known_hosts文件
 
-������Ŀ����git
-һ��ʹ��git init��������Ŀ¼���Git���Թ����Ĳֿ⣬����һ��.git��Ŀ¼   //���؈��е�һ�ξͿ���
+本地项目创建git
+一、使用git init命令把这个目录变成Git可以管理的仓库，生成一個.git的目录   //本地執行第一次就可以
  
-Զ��github�����ֿ� 
-һ�����Repositories ����һ������Ŀ��Repository name����Ŀ���ƣ��������Բ�ѡ��
-������������Ĳֿ⣬�õ����ɵ�ssh
+远程github创建仓库 
+一、点击Repositories 创建一个新项目（Repository name：项目名称，其他可以不选择）
+二、点击创建的仓库，拿到生成的ssh
 
-������Ŀ��Զ�ֿ̲����
-һ������Ŀ���Ҽ���bash������ִ�У�git remote add origin �õ����ɵ�ssh(git remote show origin���Բ鿴���ɵ�ssh)
+本地项目与远程仓库关联
+一、在项目中右键在bash窗口中执行：git remote add origin 拿到生成的ssh(git remote show origin可以查看生成的ssh)
 
  
-��һ�η�����Ŀ��
-һ��Git add . //�����ط��͵��ݴ���
-����git commit -m "���ǲ�����ע������" //�ݴ����ύ�����ط�֧��Ĭ��master��
-���ύ���浽�ݴ��� git commit -am "ע��"�����ܵ�һ��ʹ�ã�
-�������������͵�Զ��
-          git push -u  origin master(��һ���ύ��Ҫд-u)
-        
-     Ȼ��Ϳ�����Զ�ֿ̲⿴���ո��ύ�ļ�����
-������add,commit�������Ժϲ���git commit -am "ע��"��
+第一次发布项目：
+一、Git add . //将本地发送到暂存区
+二、git commit -m "这是操作备注的名称" //暂存区提交到本地分支（默认master）
+（提交并存到暂存区 git commit -am "注释"，不能第一次使用）
+三、将本地推送到远程
+          git push -u  origin master(第一次提交需要写-u)
+     然后就可以在远程仓库看到刚刚提交文件的啦
+（折行add,commit操作可以合并，git commit -am "注释"）
 
-��һ�ν�Զ�ֿ̲���������ص�����:
-һ����github��Զ�ֿ̲����ҵ�Clone with SSH�����Ǹո����ɵ�ssh��
-�����ڱ���bash������ִ�У�git clone �ո����ɵ�ssh
-
+第一次将远程仓库的内容下载到本地:
+一、在github的远程仓库中找到Clone with SSH（就是刚刚生成的ssh）
+二、在本地bash窗口中执行：git clone 刚刚生成的ssh
 
 
 
-�ύ������-Զ�̣�
-һ��git add ./�ļ���������.��ʾ�ύ���У�дĳ���ļ�����ʾ�ύĳ���ļ���
-����git commit -m "���ǲ�����ע������"
-����git push origin master
-���£�Զ��-���أ�
-һ��git pull
+提交（本地-远程）
+一、git add ./文件名（这里.表示提交所有，写某个文件名表示提交某个文件）
+二、git commit -m "这是操作备注的名称"
+三、git push origin master
+更新（远程-本地）
+一、git pull
 
 
 
-������ 
-git status �������������ʱ�����ղֿ⵱ǰ��״̬���鿴��ǰ״̬��
+操作： 
+git status 命令可以让我们时刻掌握仓库当前的状态（查看当前状态）
 
-Git log  ������������ǲ鿴�ύ��־�����Կ����ύ��ʲô��ע�����ߣ����ڣ�
-Git log -2 ���Բ鿴���2�ε���־
-Git log --pretty=oneline ������������ǲ鿴�ύ��־��ֻ���Կ����ύ�ı�ע��id�����ɵ��������
-Git log --pretty=format:"%h - %an,%ar  : %s"�����Զ��塰��˫����������ʾ������
-git log --graph ��ʾ����ͼ�ν������־
-git reflog  �鿴���в�����¼
-git commit --amend -m "  �޸����һ�β�����ע����"
-git branch �鿴��֧
-git branch <��֧��>  �½���֧
-git checkout <��֧��> ���_��֧(�ГQ��֧)
-git checkout -b <��֧��>  ������֧���򿪷�֧
-git branch -d <��֧��> �h����֧������ɾ���������1.�����ڵ�ǰ��֧ɾ���Լ� 2.����ɾ��������δ�ϲ����ķ�֧�������ֲ���				ɾ��ʱ���㻹�����ɾ���������git branch -D <��֧��> ǿ��ɾ����
-git merge <��֧��>  �ϲ���֧
-git branch -v �鿴�����֧��svalֵ�������Զ����ɵ��������
-git reset --hard HEAD^ �˻���һ�ΰ汾��git reset --hard HEAD^^ �˻������ΰ汾,git rest --hard HEAD~n �˻���n�ΰ汾                                                              ,git reset --hard 1094aͨ��commitֵ���˵�ĳһ�汾)	 		
-git branch -m master masterss�޸ķ�֧���ƣ���֧��������
-
-
+Git log  命令可以让我们查看提交日志（可以看到提交了什么备注，作者，日期）
+Git log -2 可以查看最近2次的日志
+Git log --pretty=oneline 命令可以让我们查看提交日志（只可以看到提交的备注跟id即生成的随机数）
+Git log --pretty=format:"%h - %an,%ar  : %s"可以自定义“”双引号里面显示的内容
+git log --graph 显示含有图形界面的日志
+git reflog  查看所有操作记录
+git commit --amend -m "  修改最近一次操作备注名称"
+git branch 查看分支
+git branch <分支名>  新建分支
+git checkout <分支名> 打開分支(切換分支)
+git checkout -b <分支名>  創建分支并打开分支
+git branch -d <分支名> 刪除分支（不能删除的情况：1.不能在当前分支删除自己 2.不能删除包含“未合并”的分支。当出现不能				删除时，你还想继续删除，则可以git branch -D <分支名> 强行删除）
+git merge <分支名>  合并分支
+git branch -v 查看最近分支的sval值（就是自动生成的随机数）
+git reset --hard HEAD^ 退回上一次版本（git reset --hard HEAD^^ 退回上两次版本,git rest --hard HEAD~n 退回上n次版本                                                              ,git reset --hard 1094a通过commit值回退到某一版本)	 		
+git branch -m master masterss修改分支名称（分支重命名）
 
 
 
-�ݴ���->�����������ݴ����˻ع�����ִ���������
-����1��git  rm --cached  hello.txt���ļ����ƣ�
-����2��git  reset head  hello.txt
+暂存区->工作区（从暂存区退回工作区执行以下命令）
+方法1：git  rm --cached  hello.txt（文件名称）
+方法2：git  reset head  hello.txt
 
-������/�ݴ���->�������������������е��޸ģ�����ڶ�����/�ݴ�������������/�ݴ��������checkout�޷���������޸ģ�
-git  checkout -- hello.txt���ļ����ƣ�
+对象区/暂存区->工作区（放弃工作区中的修改（相对于对象区/暂存区，即对象区/暂存区里面的checkout无法对其进行修改）
+git  checkout -- hello.txt（文件名称）
 
-git reset HEAD <�ļ���>(��֮ǰ���ݴ����Ļ��˵��������������ļ����ݻ��ڣ���û�б�ɾ��,ִ��git  checkout -- hello.txt���ݾͱ�ɾ����
+git reset HEAD <文件名>(将之前在暂存区的回退到工作区，但是文件内容还在，并没有被删除,执行git  checkout -- hello.txt内容就被删除）
 
 
 
 
-
-
-һ.Git���԰�װ����Щ����ϵͳ�ϣ�
+一.Git可以安装在哪些操作系统上？
  Linux
  macOS
  Solaris
  Windows
  Raspberry Pi
 
-��.git���ƣ�
-���ذ汾����
-��д�ύ˵��
-���ԡ���ڡ����ָ�������汾
-��֧ϵͳ
+二.git优势？
+本地版本控制
+重写提交说明
+可以“后悔”，恢复到任意版本
+分支系统
 
-����git�ύ��svn�ύ�汾�к�����
-svn:ÿһ�εİ汾ֵ���ڱ��޸ĵ��ļ������Ḵ������δ�޸ĵ��ļ�������Ҫ�ص�ĳ���汾ǰδ�޸ĵ��õ����ٻָ�
-git:ÿһ�εİ汾�����޸���񣬶���������ļ����Ƶ�����汾��ʱ�̱������ݵ������ԣ�
+三。git提交与svn提交版本有何区别？
+svn:每一次的版本值存在被修改的文件，不会复制其他未修改的文件，所以要回到某个版本前未修改的拿到，再恢复
+git:每一次的版本不管修改与否，都会把所有文件复制到这个版本（时刻保持数据的完整性）
 
-�ġ�����ļ��Ѿ�commit�������������Ǵ�ʱ�����޸����ļ����ļ����˻ع�����modified��
-���ʱ�������ȷ����Ҫ����޸ľͿ��԰����ύ��˳��add�ȿ�ʼ�ύ��
-�����Ҫ��������޸ģ������git  checkout -- hello.txt���ļ����ƣ����ͻָ����޸�ǰ
+四。如果文件已经commit到对象区，但是此时本地修改了文件，文件会退回工作区modified，
+这个时候如果你确定需要这个修改就可以按照提交的顺序add等开始提交，
+如果你要放弃这个修改，则可以git  checkout -- hello.txt（文件名称），就恢复到修改前
  
-��()��ɾ���Ѿ�commit�ύ���ļ���ִ��Git rm hell.txt����ʱ�ڶ��������ļ������ŵ��ݴ�����
-����ɾ�������ʱ�����ȷ��Ҫɾ������ļ���ִ��Git commit -m ������ɾ��hell.txt����nothing to commit, working tree clean������ʾ��ʾ�������о����ݴ����ɾ���
-Git rm ��ڣ�����㲻��ɾ������ļ��ˣ�ִ��git reset head hell.txt���Իָ�����������Ȼ��ִ�� git checkout -- a.txt���Գ���ɾ����������ʱ�ļ������ڽ�����ʾ�ˣ�
+五()。删除已经commit提交的文件，执行Git rm hell.txt，此时在对象区的文件将被放到暂存区，
+彻底删除：这个时候如果确定要删除这个文件，执行Git commit -m “彻底删除hell.txt”（nothing to commit, working tree clean窗口显示表示工作区感觉，暂存区干净）
+Git rm 后悔：如果你不想删除这个文件了，执行git reset head hell.txt可以恢复到工作区，然后执行 git checkout -- a.txt可以撤销删除操作（此时文件可以在界面显示了）
 
-����git rm(gitɾ��)��rm(����ϵͳɾ����������
-  1) git rm aaa.txt: aaa.txt�ļ����ŵ����ݴ���
-      1. Git rm ���:ִ��git reset head aaa.txt�ָ�����ִ�� git checkout -- aaa.txt���Գ���ɾ������,)
-      2.����ɾ�������ʱ�����ȷ��Ҫɾ������ļ���ִ��Git commit -m "����ɾ��hell.txt"��nothing to commit, working tree clean������ʾ         ��ʾ�������о����ݴ����ɾ���
-  2)rm aaa.txt: aaa.txt�ļ����ŵ��˹�����(ִ��add ,commit�ȿɻָ�)
-����git rm(gitɾ��)��rm(����ϵͳɾ����������
-   git rm aaa.txt:aaa.txt�ļ����ŵ����ݴ���(ִ��git reset head aaa.txt�ָ�����ִ�� git checkout -- aaa.txt���Գ���ɾ������)
-   rm aaa.txt:aaa.txt�ļ����ŵ��˹�����(ִ��add ,commit�ȿɻָ�)
-
-
-�ߣ�git mv(git������)��mv(����ϵͳ�������������� 
-    git mv hell1.txt hell2.txt: ִ��git reset head hell1.txt�ָ���git checkout -- hell1.txt�����������ļ�hell1.txt���ص���������                           ��hell2.txt����������ļ��ڹ����������ʱ�����commit�ύ��ֽreset head �ָ�)
-   mv hell1.txt hell2.txt:hell1.txt�����ڶ�����,hell2.txt�����ڹ�������ִ��git reset head hell1.txt�ָ���ֱ�ӱ��ԭ����hell1.txt
+六：git rm(git删除)与rm(操作系统删除）的区别：
+  1) git rm aaa.txt: aaa.txt文件被放到了暂存区
+      1. Git rm 后悔:执行git reset head aaa.txt恢复，再执行 git checkout -- aaa.txt可以撤销删除操作,)
+      2.彻底删除：这个时候如果确定要删除这个文件，执行Git commit -m "彻底删除hell.txt"（nothing to commit, working tree clean窗口显示         表示工作区感觉，暂存区干净）
+  2)rm aaa.txt: aaa.txt文件被放到了工作区(执行add ,commit等可恢复)
+六：git rm(git删除)与rm(操作系统删除）的区别：
+   git rm aaa.txt:aaa.txt文件被放到了暂存区(执行git reset head aaa.txt恢复，再执行 git checkout -- aaa.txt可以撤销删除操作)
+   rm aaa.txt:aaa.txt文件被放到了工作区(执行add ,commit等可恢复)
 
 
-�ˣ�Git��Ŀ�д���һ��.gitignore�ļ����������ÿ���д��
-    *.properties    (*ͨ���,��ʾ���к�׺Ϊ.properties���ļ�ȫ�����ԣ�����git�����жϷ�Χ�ڣ�
-    ��name.properties    (���ǣ���ʾ�����ͨ����в�����name.properties��Ҳ����name.properties��Ҫ��git�����жϷ�Χ��)
-     dir/��      (��ʾdirl�ļ����������ж���ȫ�����Բ���git�жϹ�����Χ��)
-     dir/*.txt    (��ʾ����dir�ļ���������.txt�ļ�)
-     dir/*/*.txt  (��ʾ����dir�ļ����е�����һ����Ŀ¼�е�����.txt�ļ������� dir/sad/zz.txt, dir/rgfg/gh.txt...)
-     dir/**/*.txt (��ʾ����dir�ļ����е���������Ŀ��е�����.txt�ļ������� dir/sad/sadas/sad/zz.txt, dir/rgf/sdg/gh.txt...)
-�ţ��ڷ�֧�½����޸��ļ���û��add��commit��������ʱ��������֧Ҳ�ǿ��Կ����ģ���ʱ�÷�֧����ֱ��ɾ�������ǽ�����add��commit��������֧�Ͳ��ῴ������ʱҪɾ���÷�֧��Ҫ���кϲ���֧����ɾ���÷�֧
-ʮ���ϲ���֧��
-    git merge ��fast forward����ָ���Ϊһ�㣬1.����fast forward����һ��commit 2.û�з�֧��Ϣ��fast forward��ָ����ƶ���
-    git merge --no-ff����ͬ����ͨ��--no-ff�ϲ���ʹ������֧����Ϊһ�㣬��������ϲ��ķ�֧��ǰ��һ�� ����ʱ��Ҫ�ٽ��кϲ���Ҫgit merge <��֧��>  �ϲ���֧
-ʮһ�������ͻ��
-   ��������֧��ͬ���ļ���ͬ���ط����涼���޸Ĳ���add,commit�ύʱ����ʱmerge�ϲ����ͻ
-    1.�ȶԷ�֧1�ϵ��ļ������޸ģ�Ȼ��add,commit(��֪git����ͻ�ѽ������֮ǰ����add,commit��ͬ�������Ǵӹ��������ݴ���)
-    2.��ʱ����һ����֧2�ϸ��ļ���û���޸ģ���������commitֵ�Ѿ������Ƶ���֧1�ϣ���ʱ����ֱ���ڷ�֧1����merge�ϲ�
-ע�⣺���������֧����һ���������һ�������������󷽽��кϲ�ǰ����
-ʮ�����汾���ˣ�git reset --hard  <�汾commitֵ>�����git reflog  �鿴���������¼��ʵ�ֺ�ڲ�����
-ʮ�����汾����git checkout  <�汾commitֵ>  �汾��������״̬��
-	1.����ĳ��ֵ���֧�󣬱���add,commit�ύ
-	2.�ύ֮�󣬴�����֧ git branch  <��֧��> commitֵ
-	3.Ȼ����Իص�����֧git checkout  <��֧��>
-ʮ�ģ�stash�����ֳ�
-	1.���飺�ڹ���δ�������ʱ����Ҫcommit
-	2.�涨�����룩����û��commit֮ǰ������checkout�л���֧������ͬһ��commit�׶Σ�
-ʮ�壺�����û�н�ĳһ�����ܿ�����ϣ�û�н���add,commit����Ϊ��û�п����꣬���Բ��ܽ���commit������Ҫ�����л���֧��
-	1.�����ֳ�����ʱ����stash��git stash/git stash save "name�ֳ�����"��
-	2.�л���֧��checkout ( git checkout  <��֧��>,Ȼ�������Ҫ�޸ĵ����ݺ����лط�֧)
-	3�ָ���ʱ���棺
-		1���Ƚ��в鿴Ҫ�ָ���һ����git stash list 
-		2)��ԭ�ֳ���
-                                  ִ�з���1�� git stash pop(��ԭ������ʱ����ɾ�������ڻ�ԭ���ݣ�Ĭ�ϻ�ԭ���һ�Σ�)
-   		  ִ�з���2�� git stash apply(��ʱ���治ɾ��,��ԭ���ݣ���ʱ��Ҫɾ����ʱ���棬���ֶ�git stash drop stash@{n})
-			(git stash apply stash@{n}ָ����ԭĳһ���ֳ�)
-ʮ����Tag��ǩ��������������Ŀ��������֧û��ϵ
+七：git mv(git重命名)与mv(操作系统重命名）的区别： 
+    git mv hell1.txt hell2.txt: 执行git reset head hell1.txt恢复后，git checkout -- hell1.txt会生成两个文件hell1.txt（回到对象区）                           与hell2.txt（变成新增文件在工作区，这个时候可以commit提交火纸reset head 恢复)
+   mv hell1.txt hell2.txt:hell1.txt被放在对象区,hell2.txt被放在工作区，执行git reset head hell1.txt恢复后直接变回原来的hell1.txt
+
+
+八：Git项目中创建一个.gitignore文件，里面配置可以写：
+    *.properties    (*通配符,表示所有后缀为.properties的文件全部忽略，不在git操作判断范围内）
+    ！name.properties    (！非，表示上面的通配符中不包含name.properties，也就是name.properties需要在git操作判断范围内)
+     dir/：      (表示dirl文件夹里面所有东西全部忽略不在git判断管理范围内)
+     dir/*.txt    (表示忽略dir文件夹中所有.txt文件)
+     dir/*/*.txt  (表示忽略dir文件夹中的所有一級子目录中的所有.txt文件，例： dir/sad/zz.txt, dir/rgfg/gh.txt...)
+     dir/**/*.txt (表示忽略dir文件夹中的所任意子目錄中的所有.txt文件，例： dir/sad/sadas/sad/zz.txt, dir/rgf/sdg/gh.txt...)
+九：在分支下建立修改文件，没有add，commit到对象区时在其他分支也是可以看到的，此时该分支可以直接删除，但是进行了add，commit后，其他分支就不会看到，此时要删除该分支就要进行合并分支，再删除该分支
+十：合并分支：
+    git merge （fast forward）：指针合为一点，1.两个fast forward归于一点commit 2.没有分支信息（fast forward：指针的移动）
+    git merge --no-ff：不同步，通过--no-ff合并会使两个分支不归为一点，主动发起合并的分支会前进一步 ，此时，要再进行合并需要git merge <分支名>  合并分支
+十一：解决冲突：
+   当两个分支在同个文件夹同个地方上面都有修改并且add,commit提交时，此时merge合并会冲突
+    1.先对分支1上的文件进行修改，然后add,commit(告知git，冲突已解决，与之前操作add,commit不同，并不是从工作区到暂存区)
+    2.此时，另一个分支2上该文件还没有修改，但是他的commit值已经被复制到分支1上，此时可以直接在分支1进行merge合并
+注意：如果两个分支上有一方落后于另一方，则可以在落后方进行合并前进方
+十二。版本回退：git reset --hard  <版本commit值>（结合git reflog  查看任意操作记录，实现后悔操作）
+十三。版本穿梭：git checkout  <版本commit值>  版本穿梭（游离状态）
+	1.穿梭到某个值后分支后，必须add,commit提交
+	2.提交之后，创建分支 git branch  <分支名> commit值
+	3.然后可以回到主分支git checkout  <分支名>
+十四：stash保存现场
+	1.建议：在功能未开发完成时，不要commit
+	2.规定（必须）：在没有commit之前，不能checkout切换分支（不在同一個commit阶段）
+十五：如果还没有将某一个功能开发完毕（没有进行add,commit，因为还没有开发完，所以不能进行commit），就要进行切换分支：
+	1.保存现场：临时保存stash（git stash/git stash save "name现场名字"）
+	2.切换分支：checkout ( git checkout  <分支名>,然后进行需要修改的内容后，再切回分支)
+	3恢复临时保存：
+		1）先进行查看要恢复哪一个：git stash list 
+		2)还原现场：
+                                  执行方法1： git stash pop(将原来的临时保存删除，用于还原内容，默认还原最近一次，)
+   		  执行方法2： git stash apply(临时保存不删除,还原内容，这时候要删除临时保存，就手动git stash drop stash@{n})
+			(git stash apply stash@{n}指定还原某一次现场)
+十六：Tag表签：适用于整个项目，与具体分支没关系
 git tag <name>
-git tag -a <name> -m "��ע��"
-�鿴��ǩgit tag
-ɾ����ǩ git tag -d <��ǩ��> 
-ʮ�ߣ�blame����
-git blame a.txt �鿴a.txt�������ύcommit shalֵ���Σ��Լ����ߣ�ʱ���
-ʮ�ˣ�
-     diff �����ԣ��Ƚ������ļ����治ͬ�ĵط���
-	diff a.txt b.txt��diff -u a.txt b.txt������ϸ�鿴�Ƚϲ�ͬ�ĵط���
-     git diff:�Ƚ� ��ͬ�����ļ�
-      1.git diff:�Ƚ��ݴ��� �� ���������ļ����죨���ݴ���Ϊ���ĶԱȣ�	
-      2.git diff <commit��shalֵ>:�Ƚ϶������빤�������ļ�����
-      3.git diff head:�Ƚ����¶������빤�������ļ�����,
-      5.git diff --cached:�Ƚ��ݴ��� �� �������Ĳ���
-      6.git diff --cached head::�Ƚ������ݴ��� �� �������Ĳ���
+git tag -a <name> -m "备注名"
+查看标签git tag
+删除标签 git tag -d <标签名> 
+十七：blame责任
+git blame a.txt 查看a.txt的所有提交commit shal值责任，以及作者，时间等
+十八：
+     diff 差异性（比较两份文件里面不同的地方）
+	diff a.txt b.txt（diff -u a.txt b.txt可以详细查看比较不同的地方）
+     git diff:比较 不同区的文件
+      1.git diff:比较暂存区 与 工作区的文件差异（以暂存区为中心对比）	
+      2.git diff <commit的shal值>:比较对象区与工作区的文件差异
+      3.git diff head:比较最新对象区与工作区的文件差异,
+      5.git diff --cached:比较暂存区 与 对象区的差异
+      6.git diff --cached head::比较最新暂存区 与 对象区的差异
 
 
 
-����ڵı�ݲ��������������κ�ʱ�򣩣�
-touch hello.txt�����������һ��hello.txt�ļ�
-����ctrl+A�����ù��ص���ͷ��
-����ctrl+e�����ù��ص���ͷ��β
-����ctrl+c�����÷�����һ������Ķ��������¿�ʼ
-����echo "�޸ĵ�����" > hello.txt ������hello.txt�����ݻ�Ϊ���޸ĵ����ݡ�
-����cd ~�����˻ؼ��������ִ������
-����vi name.txt �����޸�����ļ���1.���esc�˳�����ģʽ�����룺set number�����кţ��˳����esc���ٵ��shift+z+z
-����cat name.txt���Բ鿴name.txt���ļ�����
-��Git log��.q���Խ����˳�
+命令窗口的便捷操作（可以用于任何时候）：
+touch hello.txt命令可以新增一个hello.txt文件
+输入ctrl+A可以让光标回到开头，
+输入ctrl+e可以让光标回到开头结尾
+输入ctrl+c可以让放弃这一行输入的东西，重新开始
+输入echo "修改的内容" > hello.txt 可以让hello.txt的内容换为“修改的内容”
+输入cd ~可以退回计算机窗口执行命令
+输入vi name.txt 进入修改这个文件：1.点击esc退出插入模式，输入：set number出现行号，退出点击esc，再点击shift+z+z
+输入cat name.txt可以查看name.txt的文件内容
+当Git log后.q可以结束退出
 
 
 
