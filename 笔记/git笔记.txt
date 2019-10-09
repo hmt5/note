@@ -52,9 +52,12 @@ git安裝步驟：
 （折行add,commit操作可以合并，git commit -am "注释"）
 
 第一次将远程仓库的内容下载到本地:
+方法一，ssh
 一、在github的远程仓库中找到Clone with SSH（就是刚刚生成的ssh）
 二、在本地bash窗口中执行：git clone 刚刚生成的ssh
-
+方法二：http
+一、在github的远程仓库中找到 git clone https://github.com/hmt5/hmts.git
+二、在本地bash窗口中执行：git clone 刚刚生成的ssh
 
 
 提交（本地-远程）
