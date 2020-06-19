@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>智能小秘书</title>
+    <link rel="stylesheet" href="./css/index.css"> 
+    <script>
+        var _hmt = _hmt||[];
+    </script>
+</head>
+<body>
+    <div id="app">
+        <div class="loading" v-if="loading">
+            <img src="./images/loading.gif" alt="">
+        </div>
+        <div class="home" >           
+            <div class="top">
+                <div class="logo">
+                    <img src="./images/logo.png" alt="">
+                </div>
+                <div class="details" @click="boxopen">活动规则</div>
+                <div class="text">
+                    推销，贷款，保险电话不想接？ <br>
+                    快递，外卖，约会电话不小心错过？ <br>
+                    没事，和留言智能小秘书帮您接听，<br>
+                    智能通知您来电意图
+                </div>
+            </div>
+            <div class="tittle">
+                <div class="tittles">
+                    <img src="./images/tittle1.png" alt="">
+                    <p>了解来电意图</p>
+                </div>
+                <div class="tittles">
+                    <img src="./images/tittle2.png" alt="">
+                    <p>文语双显</p>
+                </div>
+                <div class="tittles">
+                    <img src="./images/tittle3.png" alt="">
+                    <p>短信&微信双端</p>
+                </div>
+            </div>
+            <div class="foot">
+                <div @click="linkback" class="button"></div>
+                <div class="footText">* 智能小秘书产品参考价4元/月</div>                
+            </div>
+            
+        </div>
+        <div class="box" v-show="box">
+            <div class="boxcen"></div>
+            <div class="boxbanner">
+                <div class="boxtoop">活动规则</div>
+                <div class="boxtext">    
+                    1、本次活动推广时间为：2020年3月5日起至2020年6月30日。<br>
+                    2、本次活动对象为陕西移动8元尊享通服包订购客户，非订购客户可通过发送“KT8”至10086开通此通服包，资费8元/月，首次开通赠送8元话费。订购业务后可参与本活动。<br>
+                    3、活动首页点击“30天体验点击领取”按钮后，完成登录操作进入“我的秘书”使用界面，用户需打开智能小秘书开关按钮方可成功使用。用户可在“接听记录”页面管理来电，收听或查看来电信息，可选择回拨等操作。<br>
+                    4、本次活动所领取和留言AI智能小秘书体验期有效期为30天，自用户点击领取当天开始计算30天自然日，到期自动取消。如有中途关闭、暂停、重新领取等情况均以首次点击领取当天开始计算体验时间。<br>
+                    5、和留言AI智能小秘书体验期结束后，用户可关注“和留言”微信公众号，我们会不定期地推出“智能小秘书”权益领取活动，每个客户限领一次。                   
+                </div>
+                <div class="close">
+                    <div class="boxclose" @click="closebox">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/index.min.js?v=1.0"></script>
+</html>
